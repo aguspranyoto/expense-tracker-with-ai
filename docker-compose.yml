@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: expense-tracker-with-ai
+    restart: always
+    ports:
+      - "3000:3000"
+    # To connect to a local self-hosted Supabase easily, we pass network mode host
+    # Or you can define an external network if your Supabase is running on a custom docker network
+    # network_mode: "host" 
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      # Important: When running in docker, localhost might refer to the container itself.
+      # If your Supabase is on the same machine, you might need to use the host's IP
+      # address instead of localhost in your .env file, OR use host.docker.internal
