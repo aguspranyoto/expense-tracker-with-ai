@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -24,35 +24,7 @@ import {
   formatDate,
 } from "@/lib/constants";
 import { toast } from "sonner";
-
-// Mock transactions for development
-const MOCK_TRANSACTIONS: Transaction[] = [
-  {
-    id: "1", userId: "user1", kategori: "kopi",
-    deskripsi: "Kopi Latte + Croissant", metodePembayaran: "qris",
-    jumlah: 45000, tanggal: "2026-06-22", createdAt: "2026-06-22T10:30:00Z",
-  },
-  {
-    id: "2", userId: "user1", kategori: "bensin",
-    deskripsi: "Pertamax 10 Liter", metodePembayaran: "debit",
-    jumlah: 141000, tanggal: "2026-06-21", createdAt: "2026-06-21T08:15:00Z",
-  },
-  {
-    id: "3", userId: "user1", kategori: "makan",
-    deskripsi: "Nasi Padang + Es Teh", metodePembayaran: "tunai",
-    jumlah: 35000, tanggal: "2026-06-21", createdAt: "2026-06-21T12:45:00Z",
-  },
-  {
-    id: "4", userId: "user1", kategori: "transportasi",
-    deskripsi: "Grab ke kantor", metodePembayaran: "qris",
-    jumlah: 28000, tanggal: "2026-06-20", createdAt: "2026-06-20T07:30:00Z",
-  },
-  {
-    id: "5", userId: "user1", kategori: "belanja",
-    deskripsi: "Sabun, Shampoo, Tissue", metodePembayaran: "debit",
-    jumlah: 87500, tanggal: "2026-06-19", createdAt: "2026-06-19T16:00:00Z",
-  },
-];
+import { getTransactions } from "@/app/actions/transaction";
 
 export default function ExportPage() {
   const [dateFrom, setDateFrom] = useState<Date | undefined>(
@@ -60,8 +32,26 @@ export default function ExportPage() {
   );
   const [dateTo, setDateTo] = useState<Date | undefined>(new Date());
   const [isExporting, setIsExporting] = useState(false);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const filteredTransactions = MOCK_TRANSACTIONS.filter((t) => {
+  // Fetch transactions
+  useEffect(() => {
+    async function loadTransactions() {
+      try {
+        const data = await getTransactions();
+        setTransactions(data as any);
+      } catch (err) {
+        console.error("Gagal mengambil data", err);
+        toast.error("Gagal mengambil data transaksi.");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadTransactions();
+  }, []);
+
+  const filteredTransactions = transactions.filter((t) => {
     const d = new Date(t.tanggal);
     if (dateFrom && d < dateFrom) return false;
     if (dateTo && d > dateTo) return false;
@@ -294,13 +284,13 @@ export default function ExportPage() {
                 Transaksi ditemukan
               </span>
               <span className="text-white font-semibold font-[family-name:var(--font-fira-code)]">
-                {filteredTransactions.length}
+                {isLoading ? "Memuat..." : filteredTransactions.length}
               </span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm text-[#94A3B8]">Total pengeluaran</span>
               <span className="text-[#059669] font-semibold font-[family-name:var(--font-fira-code)]">
-                {formatRupiah(totalAmount)}
+                {isLoading ? "Memuat..." : formatRupiah(totalAmount)}
               </span>
             </div>
           </div>
@@ -308,10 +298,15 @@ export default function ExportPage() {
           {/* Export Button */}
           <Button
             onClick={handleExport}
-            disabled={isExporting || filteredTransactions.length === 0}
+            disabled={isLoading || isExporting || filteredTransactions.length === 0}
             className="w-full bg-[#059669] hover:bg-[#047857] text-white font-semibold py-5 transition-all duration-200"
           >
-            {isExporting ? (
+            {isLoading ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Memuat data...
+              </>
+            ) : isExporting ? (
               <>
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                 Membuat file Excel...
