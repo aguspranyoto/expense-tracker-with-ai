@@ -58,10 +58,10 @@ export default function DashboardLayout({
 
   if (isPending) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0F172A]">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-2 border-[#1E40AF] border-t-transparent rounded-full animate-spin" />
-          <p className="text-[#94A3B8] text-sm">Memuat...</p>
+          <div className="w-10 h-10 border-2 border-black border-t-transparent rounded-full animate-spin" />
+          <p className="text-[#737373] text-sm">Memuat...</p>
         </div>
       </div>
     );
@@ -78,31 +78,31 @@ export default function DashboardLayout({
       .slice(0, 2) || "U";
 
   return (
-    <div className="min-h-screen flex bg-[#0F172A]">
+    <div className="min-h-screen flex bg-white">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:sticky top-0 left-0 z-50 h-screen w-64 bg-[#0B1120] border-r border-white/[0.06] flex flex-col transition-transform duration-300 ${
+        className={`fixed lg:sticky top-0 left-0 z-50 h-screen w-64 bg-[#F5F5F5] border-r border-black/[0.08] flex flex-col transition-transform duration-300 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
         {/* Logo */}
-        <div className="flex items-center gap-3 px-5 h-16 border-b border-white/[0.06]">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#1E40AF] to-[#059669] flex items-center justify-center">
+        <div className="flex items-center gap-3 px-5 h-16 border-b border-black/[0.08]">
+          <div className="w-8 h-8 rounded-lg bg-black flex items-center justify-center">
             <ReceiptText className="w-4 h-4 text-white" />
           </div>
-          <span className="font-semibold text-white font-[family-name:var(--font-fira-code)] text-sm">
+          <span className="font-semibold text-black font-[family-name:var(--font-fira-code)] text-sm">
             ExpenseAI
           </span>
           <button
-            className="ml-auto lg:hidden text-[#94A3B8] hover:text-white transition-colors"
+            className="ml-auto lg:hidden text-[#737373] hover:text-black transition-colors"
             onClick={() => setSidebarOpen(false)}
           >
             <X className="w-5 h-5" />
@@ -116,34 +116,34 @@ export default function DashboardLayout({
               key={item.href}
               href={item.href}
               onClick={() => setSidebarOpen(false)}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-[#94A3B8] hover:text-white hover:bg-white/[0.06] transition-all duration-200 group"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-[#737373] hover:text-black hover:bg-black/[0.06] transition-all duration-200 group"
             >
-              <item.icon className="w-4.5 h-4.5 group-hover:text-[#3B82F6] transition-colors" />
+              <item.icon className="w-4.5 h-4.5 group-hover:text-black transition-colors" />
               <span>{item.label}</span>
             </Link>
           ))}
         </nav>
 
         {/* User profile at bottom */}
-        <div className="border-t border-white/[0.06] p-3">
+        <div className="border-t border-black/[0.08] p-3">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/[0.06] transition-all duration-200">
+              <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-black/[0.06] transition-all duration-200">
                 <Avatar className="w-8 h-8">
                   <AvatarImage src={session.user?.image || undefined} />
-                  <AvatarFallback className="bg-[#1E40AF] text-white text-xs font-semibold">
+                  <AvatarFallback className="bg-black text-white text-xs font-semibold">
                     {userInitials}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1 text-left min-w-0">
-                  <p className="text-sm text-white truncate">
+                  <p className="text-sm text-black truncate">
                     {session.user?.name}
                   </p>
-                  <p className="text-xs text-[#64748B] truncate">
+                  <p className="text-xs text-[#A3A3A3] truncate">
                     {session.user?.email}
                   </p>
                 </div>
-                <ChevronDown className="w-4 h-4 text-[#64748B]" />
+                <ChevronDown className="w-4 h-4 text-[#A3A3A3]" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
@@ -153,7 +153,7 @@ export default function DashboardLayout({
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={() => signOut({ fetchOptions: { onSuccess: () => router.push("/login") } })}
-                className="text-red-400 focus:text-red-400"
+                className="text-black focus:text-black"
               >
                 <LogOut className="w-4 h-4 mr-2" />
                 Keluar
@@ -166,9 +166,9 @@ export default function DashboardLayout({
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar (mobile) */}
-        <header className="sticky top-0 z-30 h-16 bg-[#0F172A]/80 backdrop-blur-xl border-b border-white/[0.06] flex items-center px-4 lg:px-6">
+        <header className="sticky top-0 z-30 h-16 bg-white/80 backdrop-blur-xl border-b border-black/[0.08] flex items-center px-4 lg:px-6">
           <button
-            className="lg:hidden mr-3 text-[#94A3B8] hover:text-white transition-colors"
+            className="lg:hidden mr-3 text-[#737373] hover:text-black transition-colors"
             onClick={() => setSidebarOpen(true)}
           >
             <Menu className="w-5 h-5" />

@@ -68,14 +68,14 @@ const categoryIcons: Record<string, React.ElementType> = {
   lainnya: HelpCircle,
 };
 
-// Category badge color mapping
+// Category badge color mapping (B&W)
 const categoryColors: Record<string, string> = {
-  kopi: "bg-amber-500/15 text-amber-400 border-amber-500/20",
-  bensin: "bg-red-500/15 text-red-400 border-red-500/20",
-  makan: "bg-orange-500/15 text-orange-400 border-orange-500/20",
-  transportasi: "bg-purple-500/15 text-purple-400 border-purple-500/20",
-  belanja: "bg-pink-500/15 text-pink-400 border-pink-500/20",
-  lainnya: "bg-slate-500/15 text-slate-400 border-slate-500/20",
+  kopi: "bg-black/10 text-black border-black/20",
+  bensin: "bg-black/15 text-black border-black/20",
+  makan: "bg-black/10 text-black border-black/20",
+  transportasi: "bg-black/15 text-black border-black/20",
+  belanja: "bg-black/10 text-black border-black/20",
+  lainnya: "bg-black/5 text-[#404040] border-black/15",
 };
 
 // Mock data for development
@@ -136,7 +136,7 @@ export default function DashboardPage() {
       accessorKey: "tanggal",
       header: "Tanggal",
       cell: ({ row }) => (
-        <span className="text-[#94A3B8] text-sm tabular-nums">
+        <span className="text-[#737373] text-sm tabular-nums">
           {formatDateShort(row.getValue("tanggal"))}
         </span>
       ),
@@ -165,7 +165,7 @@ export default function DashboardPage() {
       header: "Deskripsi",
       cell: ({ row }) => (
         <div className="max-w-[200px] sm:max-w-[300px]">
-          <span className="text-white font-medium text-sm truncate block" title={formatDeskripsi(row.getValue("deskripsi"))}>
+          <span className="text-black font-medium text-sm truncate block" title={formatDeskripsi(row.getValue("deskripsi"))}>
             {formatDeskripsi(row.getValue("deskripsi"))}
           </span>
         </div>
@@ -178,14 +178,14 @@ export default function DashboardPage() {
         const method = row.getValue("metodePembayaran") as string;
         const label =
           PAYMENT_METHODS.find((p) => p.value === method)?.label || method;
-        return <span className="text-[#94A3B8] text-sm">{label}</span>;
+        return <span className="text-[#737373] text-sm">{label}</span>;
       },
     },
     {
       accessorKey: "jumlah",
       header: () => <div className="text-right">Jumlah</div>,
       cell: ({ row }) => (
-        <div className="text-right font-semibold text-white font-[family-name:var(--font-fira-code)] text-sm tabular-nums">
+        <div className="text-right font-semibold text-black font-[family-name:var(--font-fira-code)] text-sm tabular-nums">
           {formatRupiah(row.getValue("jumlah"))}
         </div>
       ),
@@ -202,7 +202,7 @@ export default function DashboardPage() {
                 setSelectedTx(transaction);
                 setIsDialogOpen(true);
               }}
-              className="text-sm text-[#3B82F6] hover:text-[#60A5FA] underline underline-offset-4 transition-colors font-medium"
+              className="text-sm text-black hover:text-[#404040] underline underline-offset-4 transition-colors font-medium"
             >
               View Detail
             </button>
@@ -231,67 +231,67 @@ export default function DashboardPage() {
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold text-white font-[family-name:var(--font-fira-code)]">
+        <h1 className="text-2xl font-bold text-black font-[family-name:var(--font-fira-code)]">
           Dashboard
         </h1>
-        <p className="text-[#94A3B8] text-sm mt-1">
+        <p className="text-[#737373] text-sm mt-1">
           Ringkasan pengeluaran dan riwayat transaksi
         </p>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="bg-[#1E293B]/60 border-white/[0.06] hover:border-white/[0.12] transition-all duration-200">
+        <Card className="bg-white border-black/[0.08] hover:border-black/[0.15] transition-all duration-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-xs font-medium text-[#94A3B8] uppercase tracking-wider">
+            <CardTitle className="text-xs font-medium text-[#737373] uppercase tracking-wider">
               Total Transaksi
             </CardTitle>
-            <Receipt className="w-4 h-4 text-[#3B82F6]" />
+            <Receipt className="w-4 h-4 text-black" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white font-[family-name:var(--font-fira-code)]">
+            <div className="text-2xl font-bold text-black font-[family-name:var(--font-fira-code)]">
               {stats.totalTransactions}
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-[#1E293B]/60 border-white/[0.06] hover:border-white/[0.12] transition-all duration-200">
+        <Card className="bg-white border-black/[0.08] hover:border-black/[0.15] transition-all duration-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-xs font-medium text-[#94A3B8] uppercase tracking-wider">
+            <CardTitle className="text-xs font-medium text-[#737373] uppercase tracking-wider">
               Total Pengeluaran
             </CardTitle>
-            <TrendingDown className="w-4 h-4 text-[#DC2626]" />
+            <TrendingDown className="w-4 h-4 text-[#404040]" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white font-[family-name:var(--font-fira-code)]">
+            <div className="text-2xl font-bold text-black font-[family-name:var(--font-fira-code)]">
               {formatRupiah(stats.totalAmount)}
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-[#1E293B]/60 border-white/[0.06] hover:border-white/[0.12] transition-all duration-200">
+        <Card className="bg-white border-black/[0.08] hover:border-black/[0.15] transition-all duration-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-xs font-medium text-[#94A3B8] uppercase tracking-wider">
+            <CardTitle className="text-xs font-medium text-[#737373] uppercase tracking-wider">
               Minggu Ini
             </CardTitle>
-            <TrendingUp className="w-4 h-4 text-[#059669]" />
+            <TrendingUp className="w-4 h-4 text-black" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white font-[family-name:var(--font-fira-code)]">
+            <div className="text-2xl font-bold text-black font-[family-name:var(--font-fira-code)]">
               {formatRupiah(stats.thisWeekAmount)}
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-[#1E293B]/60 border-white/[0.06] hover:border-white/[0.12] transition-all duration-200">
+        <Card className="bg-white border-black/[0.08] hover:border-black/[0.15] transition-all duration-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-xs font-medium text-[#94A3B8] uppercase tracking-wider">
+            <CardTitle className="text-xs font-medium text-[#737373] uppercase tracking-wider">
               Rata-rata
             </CardTitle>
-            <CreditCard className="w-4 h-4 text-[#8B5CF6]" />
+            <CreditCard className="w-4 h-4 text-[#404040]" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white font-[family-name:var(--font-fira-code)]">
+            <div className="text-2xl font-bold text-black font-[family-name:var(--font-fira-code)]">
               {formatRupiah(stats.avgTransaction)}
             </div>
           </CardContent>
@@ -299,16 +299,16 @@ export default function DashboardPage() {
       </div>
 
       {/* Transactions Table */}
-      <Card className="bg-[#1E293B]/60 border-white/[0.06]">
+      <Card className="bg-white border-black/[0.08]">
         <CardHeader className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <CardTitle className="text-lg text-white font-[family-name:var(--font-fira-code)]">
+          <CardTitle className="text-lg text-black font-[family-name:var(--font-fira-code)]">
             Riwayat Transaksi
           </CardTitle>
           <Select
             value={categoryFilter}
             onValueChange={setCategoryFilter}
           >
-            <SelectTrigger className="w-full sm:w-44 bg-[#0F172A] border-white/[0.08]">
+            <SelectTrigger className="w-full sm:w-44 bg-[#F5F5F5] border-black/[0.08]">
               <SelectValue placeholder="Filter kategori" />
             </SelectTrigger>
             <SelectContent>
@@ -322,18 +322,18 @@ export default function DashboardPage() {
           </Select>
         </CardHeader>
         <CardContent>
-          <div className="rounded-lg border border-white/[0.06] overflow-hidden">
+          <div className="rounded-lg border border-black/[0.08] overflow-hidden">
             <Table>
               <TableHeader>
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow
                     key={headerGroup.id}
-                    className="border-white/[0.06] hover:bg-transparent"
+                    className="border-black/[0.08] hover:bg-transparent"
                   >
                     {headerGroup.headers.map((header) => (
                       <TableHead
                         key={header.id}
-                        className="text-[#64748B] text-xs uppercase tracking-wider font-semibold bg-[#0B1120]/50"
+                        className="text-[#737373] text-xs uppercase tracking-wider font-semibold bg-[#F5F5F5]/50"
                       >
                         {header.isPlaceholder
                           ? null
@@ -351,7 +351,7 @@ export default function DashboardPage() {
                   table.getRowModel().rows.map((row) => (
                     <TableRow
                       key={row.id}
-                      className="border-white/[0.04] hover:bg-white/[0.03] transition-colors"
+                      className="border-black/[0.04] hover:bg-black/[0.02] transition-colors"
                     >
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id} className="py-3">
@@ -367,7 +367,7 @@ export default function DashboardPage() {
                   <TableRow>
                     <TableCell
                       colSpan={columns.length}
-                      className="h-24 text-center text-[#64748B]"
+                      className="h-24 text-center text-[#737373]"
                     >
                       Belum ada transaksi.
                     </TableCell>
@@ -379,7 +379,7 @@ export default function DashboardPage() {
 
           {/* Pagination */}
           <div className="flex items-center justify-between mt-4">
-            <p className="text-xs text-[#64748B]">
+            <p className="text-xs text-[#737373]">
               Menampilkan{" "}
               {table.getState().pagination.pageIndex *
                 table.getState().pagination.pageSize +
@@ -398,11 +398,11 @@ export default function DashboardPage() {
                 size="sm"
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage()}
-                className="bg-transparent border-white/[0.08] text-[#94A3B8] hover:text-white hover:bg-white/[0.06]"
+                className="bg-transparent border-black/[0.08] text-[#737373] hover:text-black hover:bg-black/[0.06]"
               >
                 <ChevronLeft className="w-4 h-4" />
               </Button>
-              <span className="text-sm text-[#94A3B8] tabular-nums">
+              <span className="text-sm text-[#737373] tabular-nums">
                 {table.getState().pagination.pageIndex + 1} /{" "}
                 {table.getPageCount()}
               </span>
@@ -411,7 +411,7 @@ export default function DashboardPage() {
                 size="sm"
                 onClick={() => table.nextPage()}
                 disabled={!table.getCanNextPage()}
-                className="bg-transparent border-white/[0.08] text-[#94A3B8] hover:text-white hover:bg-white/[0.06]"
+                className="bg-transparent border-black/[0.08] text-[#737373] hover:text-black hover:bg-black/[0.06]"
               >
                 <ChevronRight className="w-4 h-4" />
               </Button>
@@ -422,26 +422,26 @@ export default function DashboardPage() {
 
       {/* Detail Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="bg-[#1E293B] border-white/[0.08] max-w-md">
+        <DialogContent className="bg-white border-black/[0.08] max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-white font-[family-name:var(--font-fira-code)]">
+            <DialogTitle className="text-black font-[family-name:var(--font-fira-code)]">
               Detail Transaksi
             </DialogTitle>
-            <DialogDescription className="text-[#94A3B8]">
+            <DialogDescription className="text-[#737373]">
               Rincian lengkap dari transaksi Anda.
             </DialogDescription>
           </DialogHeader>
 
           {selectedTx && (
             <div className="space-y-4 py-2">
-              <div className="flex justify-between items-center py-2 border-b border-white/[0.08]">
-                <span className="text-[#94A3B8] text-sm">Tanggal</span>
-                <span className="text-white font-medium text-sm tabular-nums">
+              <div className="flex justify-between items-center py-2 border-b border-black/[0.08]">
+                <span className="text-[#737373] text-sm">Tanggal</span>
+                <span className="text-black font-medium text-sm tabular-nums">
                   {formatDateShort(selectedTx.tanggal)}
                 </span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-white/[0.08]">
-                <span className="text-[#94A3B8] text-sm">Kategori</span>
+              <div className="flex justify-between items-center py-2 border-b border-black/[0.08]">
+                <span className="text-[#737373] text-sm">Kategori</span>
                 <Badge
                   variant="outline"
                   className={`${categoryColors[selectedTx.kategori] || ""} font-medium`}
@@ -449,23 +449,23 @@ export default function DashboardPage() {
                   {CATEGORIES.find((c) => c.value === selectedTx.kategori)?.label || selectedTx.kategori}
                 </Badge>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-white/[0.08]">
-                <span className="text-[#94A3B8] text-sm">Metode</span>
-                <span className="text-white font-medium text-sm">
+              <div className="flex justify-between items-center py-2 border-b border-black/[0.08]">
+                <span className="text-[#737373] text-sm">Metode</span>
+                <span className="text-black font-medium text-sm">
                   {PAYMENT_METHODS.find((p) => p.value === selectedTx.metodePembayaran)?.label || selectedTx.metodePembayaran}
                 </span>
               </div>
-              <div className="py-2 border-b border-white/[0.08] space-y-2">
-                <span className="text-[#94A3B8] text-sm block">Deskripsi Item</span>
-                <div className="bg-[#0F172A] p-3 rounded-lg border border-white/[0.05] max-h-[200px] overflow-y-auto">
-                  <p className="text-white text-sm leading-relaxed whitespace-pre-wrap">
+              <div className="py-2 border-b border-black/[0.08] space-y-2">
+                <span className="text-[#737373] text-sm block">Deskripsi Item</span>
+                <div className="bg-[#F5F5F5] p-3 rounded-lg border border-black/[0.05] max-h-[200px] overflow-y-auto">
+                  <p className="text-black text-sm leading-relaxed whitespace-pre-wrap">
                     {formatDeskripsi(selectedTx.deskripsi).split(", ").join("\n")}
                   </p>
                 </div>
               </div>
               <div className="flex justify-between items-center pt-2">
-                <span className="text-[#94A3B8] text-sm font-medium">Total Jumlah</span>
-                <span className="text-xl font-bold text-white font-[family-name:var(--font-fira-code)] tabular-nums">
+                <span className="text-[#737373] text-sm font-medium">Total Jumlah</span>
+                <span className="text-xl font-bold text-black font-[family-name:var(--font-fira-code)] tabular-nums">
                   {formatRupiah(selectedTx.jumlah)}
                 </span>
               </div>

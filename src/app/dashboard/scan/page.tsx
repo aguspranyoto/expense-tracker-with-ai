@@ -173,16 +173,16 @@ export default function ScanPage() {
     <div className="space-y-6 max-w-2xl mx-auto">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold text-white font-[family-name:var(--font-fira-code)]">
+        <h1 className="text-2xl font-bold text-black font-[family-name:var(--font-fira-code)]">
           Scan Struk
         </h1>
-        <p className="text-[#94A3B8] text-sm mt-1">
+        <p className="text-[#737373] text-sm mt-1">
           Upload atau foto struk belanja untuk dianalisis AI
         </p>
       </div>
 
       {/* Upload Area */}
-      <Card className="bg-[#1E293B]/60 border-white/[0.06]">
+      <Card className="bg-white border-black/[0.08]">
         <CardContent className="pt-6">
           {!selectedFile ? (
             <div
@@ -194,26 +194,26 @@ export default function ScanPage() {
               onDragLeave={() => setIsDragging(false)}
               className={`relative border-2 border-dashed rounded-xl p-10 text-center transition-all duration-300 ${
                 isDragging
-                  ? "border-[#3B82F6] bg-[#3B82F6]/5"
-                  : "border-white/[0.08] hover:border-white/[0.15]"
+                  ? "border-black bg-black/[0.03]"
+                  : "border-black/[0.1] hover:border-black/[0.2]"
               }`}
             >
               <div className="flex flex-col items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-[#1E40AF]/10 flex items-center justify-center">
-                  <Upload className="w-7 h-7 text-[#3B82F6]" />
+                <div className="w-16 h-16 rounded-2xl bg-black/[0.05] flex items-center justify-center">
+                  <Upload className="w-7 h-7 text-black" />
                 </div>
                 <div>
-                  <p className="text-white font-medium mb-1">
+                  <p className="text-black font-medium mb-1">
                     Drop gambar struk di sini
                   </p>
-                  <p className="text-[#64748B] text-sm">
+                  <p className="text-[#737373] text-sm">
                     atau pilih dari perangkat
                   </p>
                 </div>
                 <div className="flex gap-3">
                   <Button
                     variant="outline"
-                    className="bg-transparent border-white/[0.1] text-[#CBD5E1] hover:text-white hover:bg-white/[0.06]"
+                    className="bg-transparent border-black/[0.1] text-[#404040] hover:text-black hover:bg-black/[0.06]"
                     onClick={() => fileInputRef.current?.click()}
                   >
                     <ImageIcon className="w-4 h-4 mr-2" />
@@ -221,7 +221,7 @@ export default function ScanPage() {
                   </Button>
                   <Button
                     variant="outline"
-                    className="bg-transparent border-white/[0.1] text-[#CBD5E1] hover:text-white hover:bg-white/[0.06]"
+                    className="bg-transparent border-black/[0.1] text-[#404040] hover:text-black hover:bg-black/[0.06]"
                     onClick={() => cameraInputRef.current?.click()}
                   >
                     <Camera className="w-4 h-4 mr-2" />
@@ -255,11 +255,11 @@ export default function ScanPage() {
           ) : (
             <div className="space-y-4">
               {/* Preview */}
-              <div className="relative rounded-xl overflow-hidden border border-white/[0.06]">
+              <div className="relative rounded-xl overflow-hidden border border-black/[0.08]">
                 <img
                   src={preview || ""}
                   alt="Receipt preview"
-                  className="w-full max-h-80 object-contain bg-black/20"
+                  className="w-full max-h-80 object-contain bg-[#F5F5F5]"
                 />
                 <button
                   onClick={clearSelection}
@@ -271,17 +271,17 @@ export default function ScanPage() {
 
               {/* File info */}
               <div className="flex items-center justify-between text-sm">
-                <span className="text-[#94A3B8] truncate max-w-[200px]">
+                <span className="text-[#737373] truncate max-w-[200px]">
                   {selectedFile.name}
                 </span>
-                <span className="text-[#64748B]">
+                <span className="text-[#A3A3A3]">
                   {formatFileSize(selectedFile.size)}
                 </span>
               </div>
 
               {/* Compression info */}
               {compressionInfo && (
-                <div className="flex items-center gap-2 text-xs text-[#059669] bg-[#059669]/10 rounded-lg px-3 py-2">
+                <div className="flex items-center gap-2 text-xs text-black bg-black/[0.05] rounded-lg px-3 py-2">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>
                     Terkompresi: {formatFileSize(compressionInfo.original)} →{" "}
@@ -296,7 +296,7 @@ export default function ScanPage() {
 
               {/* Error state */}
               {processingState === "error" && (
-                <div className="flex items-center gap-2 text-xs text-[#DC2626] bg-[#DC2626]/10 rounded-lg px-3 py-2">
+                <div className="flex items-center gap-2 text-xs text-[#404040] bg-black/[0.05] rounded-lg px-3 py-2">
                   <AlertCircle className="w-3.5 h-3.5" />
                   <span>Gagal memproses. Silakan coba lagi.</span>
                 </div>
@@ -306,7 +306,7 @@ export default function ScanPage() {
               <Button
                 onClick={handleProcess}
                 disabled={processingState === "compressing" || processingState === "analyzing"}
-                className="w-full bg-gradient-to-r from-[#1E40AF] to-[#059669] hover:opacity-90 text-white font-semibold py-5 transition-all duration-200"
+                className="w-full bg-black hover:bg-[#404040] text-white font-semibold py-5 transition-all duration-200"
               >
                 {processingState === "compressing" ? (
                   <>
@@ -335,7 +335,7 @@ export default function ScanPage() {
                 <Button
                   variant="outline"
                   onClick={() => setModalOpen(true)}
-                  className="w-full bg-transparent border-white/[0.08] text-[#CBD5E1]"
+                  className="w-full bg-transparent border-black/[0.08] text-[#404040]"
                 >
                   Buka Konfirmasi Data
                 </Button>
@@ -347,12 +347,12 @@ export default function ScanPage() {
 
       {/* Confirmation Modal */}
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogContent className="bg-[#1E293B] border-white/[0.08] max-w-md">
+        <DialogContent className="bg-white border-black/[0.08] max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-white font-[family-name:var(--font-fira-code)]">
+            <DialogTitle className="text-black font-[family-name:var(--font-fira-code)]">
               Konfirmasi Data Struk
             </DialogTitle>
-            <DialogDescription className="text-[#94A3B8]">
+            <DialogDescription className="text-[#737373]">
               Periksa dan koreksi data yang diekstrak AI sebelum menyimpan.
             </DialogDescription>
           </DialogHeader>
@@ -360,7 +360,7 @@ export default function ScanPage() {
           {editedExtraction && (
             <div className="space-y-4 py-2">
               <div className="space-y-2">
-                <Label className="text-[#CBD5E1] text-sm">Kategori</Label>
+                <Label className="text-[#404040] text-sm">Kategori</Label>
                 <Select
                   value={editedExtraction.kategori}
                   onValueChange={(value) =>
@@ -370,7 +370,7 @@ export default function ScanPage() {
                     })
                   }
                 >
-                  <SelectTrigger className="bg-[#0F172A] border-white/[0.08]">
+                  <SelectTrigger className="bg-[#F5F5F5] border-black/[0.08]">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -384,7 +384,7 @@ export default function ScanPage() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-[#CBD5E1] text-sm">Deskripsi</Label>
+                <Label className="text-[#404040] text-sm">Deskripsi</Label>
                 <Input
                   value={editedExtraction.deskripsi}
                   onChange={(e) =>
@@ -393,12 +393,12 @@ export default function ScanPage() {
                       deskripsi: e.target.value,
                     })
                   }
-                  className="bg-[#0F172A] border-white/[0.08]"
+                  className="bg-[#F5F5F5] border-black/[0.08]"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label className="text-[#CBD5E1] text-sm">
+                <Label className="text-[#404040] text-sm">
                   Metode Pembayaran
                 </Label>
                 <Select
@@ -410,7 +410,7 @@ export default function ScanPage() {
                     })
                   }
                 >
-                  <SelectTrigger className="bg-[#0F172A] border-white/[0.08]">
+                  <SelectTrigger className="bg-[#F5F5F5] border-black/[0.08]">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -424,7 +424,7 @@ export default function ScanPage() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-[#CBD5E1] text-sm">Jumlah (Rp)</Label>
+                <Label className="text-[#404040] text-sm">Jumlah (Rp)</Label>
                 <Input
                   type="number"
                   value={editedExtraction.jumlah}
@@ -434,9 +434,9 @@ export default function ScanPage() {
                       jumlah: parseInt(e.target.value) || 0,
                     })
                   }
-                  className="bg-[#0F172A] border-white/[0.08] font-[family-name:var(--font-fira-code)]"
+                  className="bg-[#F5F5F5] border-black/[0.08] font-[family-name:var(--font-fira-code)]"
                 />
-                <p className="text-xs text-[#64748B]">
+                <p className="text-xs text-[#A3A3A3]">
                   {formatRupiah(editedExtraction.jumlah)}
                 </p>
               </div>
@@ -447,13 +447,13 @@ export default function ScanPage() {
             <Button
               variant="outline"
               onClick={() => setModalOpen(false)}
-              className="bg-transparent border-white/[0.08] text-[#94A3B8]"
+              className="bg-transparent border-black/[0.08] text-[#737373]"
             >
               Batal
             </Button>
             <Button
               onClick={handleSave}
-              className="bg-[#059669] hover:bg-[#047857] text-white"
+              className="bg-black hover:bg-[#404040] text-white"
             >
               <CheckCircle2 className="w-4 h-4 mr-2" />
               Simpan Transaksi

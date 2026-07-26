@@ -35,13 +35,13 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         {children}
         <Toaster
-          theme="dark"
+          theme="light"
           position="top-right"
           toastOptions={{
             style: {
-              background: "#1E293B",
-              border: "1px solid rgba(255,255,255,0.08)",
-              color: "#F1F5F9",
+              background: "#FFFFFF",
+              border: "1px solid rgba(0,0,0,0.1)",
+              color: "#000000",
             },
           }}
         />

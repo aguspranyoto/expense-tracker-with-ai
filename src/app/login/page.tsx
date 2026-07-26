@@ -21,70 +21,65 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated gradient background */}
+      {/* Background */}
       <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[#0F172A]" />
-        <div className="absolute top-0 -left-40 w-[600px] h-[600px] bg-[#1E40AF]/20 rounded-full blur-[128px] animate-pulse" />
-        <div className="absolute bottom-0 -right-40 w-[500px] h-[500px] bg-[#059669]/15 rounded-full blur-[128px] animate-pulse [animation-delay:2s]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#3B82F6]/10 rounded-full blur-[128px] animate-pulse [animation-delay:4s]" />
+        <div className="absolute inset-0 bg-white" />
       </div>
 
       <div className="w-full max-w-md mx-auto px-6">
         {/* Logo & Branding */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1E40AF] to-[#059669] mb-6 shadow-lg shadow-[#1E40AF]/25">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-black mb-6 shadow-lg">
             <ReceiptText className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white font-[family-name:var(--font-fira-code)] tracking-tight">
+          <h1 className="text-3xl font-bold text-black font-[family-name:var(--font-fira-code)] tracking-tight">
             Smart Expense
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#059669]">
-              {" "}Tracker
-            </span>
+            <span className="text-black">{" "}Tracker</span>
           </h1>
-          <p className="text-[#94A3B8] mt-3 text-sm leading-relaxed max-w-xs mx-auto">
+          <p className="text-[#737373] mt-3 text-sm leading-relaxed max-w-xs mx-auto">
             Otomatis baca struk belanja dengan AI. Lacak pengeluaranmu lebih cerdas.
           </p>
         </div>
 
         {/* Login Card */}
         <div className="relative group">
-          {/* Card glow effect */}
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-[#1E40AF] to-[#059669] rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
+          {/* Card border effect */}
+          <div className="absolute -inset-0.5 bg-black rounded-2xl opacity-10 group-hover:opacity-15 transition-opacity duration-500" />
 
-          <div className="relative bg-[#1E293B]/80 backdrop-blur-xl border border-white/[0.06] rounded-2xl p-8 shadow-2xl">
+          <div className="relative bg-white backdrop-blur-xl border border-black/[0.08] rounded-2xl p-8 shadow-xl">
             {/* Features */}
             <div className="space-y-3 mb-8">
-              <div className="flex items-center gap-3 text-sm text-[#CBD5E1]">
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#1E40AF]/15">
-                  <Zap className="w-4 h-4 text-[#3B82F6]" />
+              <div className="flex items-center gap-3 text-sm text-[#404040]">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-black/[0.05]">
+                  <Zap className="w-4 h-4 text-black" />
                 </div>
                 <span>Scan struk otomatis dengan AI</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-[#CBD5E1]">
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#059669]/15">
-                  <BarChart3 className="w-4 h-4 text-[#059669]" />
+              <div className="flex items-center gap-3 text-sm text-[#404040]">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-black/[0.05]">
+                  <BarChart3 className="w-4 h-4 text-black" />
                 </div>
                 <span>Laporan & export ke Excel</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-[#CBD5E1]">
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#8B5CF6]/15">
-                  <Shield className="w-4 h-4 text-[#8B5CF6]" />
+              <div className="flex items-center gap-3 text-sm text-[#404040]">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-black/[0.05]">
+                  <Shield className="w-4 h-4 text-black" />
                 </div>
                 <span>Data aman & terenkripsi</span>
               </div>
             </div>
 
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8" />
+            <div className="w-full h-px bg-black/10 mb-8" />
 
             {/* Google Login Button */}
             <button
               id="google-login-btn"
               onClick={handleGoogleLogin}
               disabled={isLoading}
-              className="w-full flex items-center justify-center gap-3 px-6 py-3.5 bg-white hover:bg-gray-50 text-gray-800 font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-white/10 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none group/btn"
+              className="w-full flex items-center justify-center gap-3 px-6 py-3.5 bg-white border border-black/[0.12] hover:bg-[#F5F5F5] text-black font-semibold rounded-xl transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none group/btn"
             >
               {isLoading ? (
-                <div className="w-5 h-5 border-2 border-gray-300 border-t-gray-800 rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-[#A3A3A3] border-t-black rounded-full animate-spin" />
               ) : (
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path
@@ -111,9 +106,9 @@ export default function LoginPage() {
               )}
             </button>
 
-            <p className="text-center text-xs text-[#64748B] mt-4">
+            <p className="text-center text-xs text-[#A3A3A3] mt-4">
               Dengan masuk, kamu menyetujui{" "}
-              <span className="text-[#3B82F6] hover:underline cursor-pointer">
+              <span className="text-black hover:underline cursor-pointer">
                 Ketentuan Layanan
               </span>
             </p>
@@ -121,7 +116,7 @@ export default function LoginPage() {
         </div>
 
         {/* Bottom sparkle */}
-        <div className="flex items-center justify-center gap-2 mt-8 text-xs text-[#475569]">
+        <div className="flex items-center justify-center gap-2 mt-8 text-xs text-[#A3A3A3]">
           <Sparkles className="w-3 h-3" />
           <span>Powered by AI — Hemat waktu, cerdas kelola uang</span>
         </div>

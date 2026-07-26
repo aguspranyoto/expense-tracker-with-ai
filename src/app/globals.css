@@ -6,7 +6,7 @@
 
 /* ============================================
    Design System: Smart Expense Tracker AI
-   Style: Dark Mode (OLED) — Trust Blue + Profit Green
+   Style: Black & White — White Primary + Black Accent
    Fonts: Fira Code (heading) + Fira Sans (body)
    ============================================ */
 
@@ -60,42 +60,42 @@
 
 /* Dark-first design: :root IS the dark theme */
 :root {
-  --background: #0F172A;
-  --foreground: #F1F5F9;
-  --card: #1E293B;
-  --card-foreground: #F1F5F9;
-  --popover: #1E293B;
-  --popover-foreground: #F1F5F9;
-  --primary: #1E40AF;
+  --background: #FFFFFF;
+  --foreground: #000000;
+  --card: #FFFFFF;
+  --card-foreground: #000000;
+  --popover: #FFFFFF;
+  --popover-foreground: #000000;
+  --primary: #000000;
   --primary-foreground: #FFFFFF;
-  --secondary: #3B82F6;
-  --secondary-foreground: #FFFFFF;
-  --muted: #101A34;
-  --muted-foreground: #94A3B8;
-  --accent: #059669;
+  --secondary: #F5F5F5;
+  --secondary-foreground: #000000;
+  --muted: #F5F5F5;
+  --muted-foreground: #737373;
+  --accent: #000000;
   --accent-foreground: #FFFFFF;
-  --destructive: #DC2626;
-  --success: #059669;
+  --destructive: #000000;
+  --success: #000000;
   --success-foreground: #FFFFFF;
-  --warning: #F59E0B;
-  --warning-foreground: #0F172A;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #1E40AF;
-  --chart-1: #3B82F6;
-  --chart-2: #059669;
-  --chart-3: #F59E0B;
-  --chart-4: #8B5CF6;
-  --chart-5: #EC4899;
+  --warning: #404040;
+  --warning-foreground: #FFFFFF;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: rgba(0, 0, 0, 0.08);
+  --ring: #000000;
+  --chart-1: #000000;
+  --chart-2: #404040;
+  --chart-3: #737373;
+  --chart-4: #A3A3A3;
+  --chart-5: #D4D4D4;
   --radius: 0.625rem;
-  --sidebar: #0B1120;
-  --sidebar-foreground: #F1F5F9;
-  --sidebar-primary: #3B82F6;
+  --sidebar: #F5F5F5;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #000000;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #1E293B;
-  --sidebar-accent-foreground: #F1F5F9;
-  --sidebar-border: rgba(255, 255, 255, 0.06);
-  --sidebar-ring: #1E40AF;
+  --sidebar-accent: #E5E5E5;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: rgba(0, 0, 0, 0.08);
+  --sidebar-ring: #000000;
 }
 
 @layer base {
@@ -114,10 +114,10 @@
   }
   /* Subtle glow effect for key elements */
   .glow-primary {
-    text-shadow: 0 0 10px rgba(30, 64, 175, 0.4);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   }
   .glow-accent {
-    text-shadow: 0 0 10px rgba(5, 150, 105, 0.4);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -128,18 +128,18 @@
   }
 }
 
-/* Custom scrollbar for dark theme */
+/* Custom scrollbar for B&W theme */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B1120;
+  background: #F5F5F5;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.25);
 }

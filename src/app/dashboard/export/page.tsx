@@ -78,7 +78,7 @@ export default function ExportPage() {
       workbook.created = new Date();
 
       const sheet = workbook.addWorksheet("Laporan Pengeluaran", {
-        properties: { tabColor: { argb: "1E40AF" } },
+        properties: { tabColor: { argb: "000000" } },
       });
 
       // Column definitions
@@ -97,7 +97,7 @@ export default function ExportPage() {
       headerRow.fill = {
         type: "pattern",
         pattern: "solid",
-        fgColor: { argb: "1E40AF" },
+        fgColor: { argb: "000000" },
       };
       headerRow.alignment = { vertical: "middle", horizontal: "center" };
       headerRow.height = 28;
@@ -124,7 +124,7 @@ export default function ExportPage() {
           row.fill = {
             type: "pattern",
             pattern: "solid",
-            fgColor: { argb: "F1F5F9" },
+            fgColor: { argb: "F5F5F5" },
           };
         }
 
@@ -150,7 +150,7 @@ export default function ExportPage() {
       totalRow.fill = {
         type: "pattern",
         pattern: "solid",
-        fgColor: { argb: "059669" },
+        fgColor: { argb: "000000" },
       };
       totalRow.getCell("metode").font = { bold: true, color: { argb: "FFFFFF" } };
       totalRow.getCell("jumlah").font = { bold: true, color: { argb: "FFFFFF" } };
@@ -162,10 +162,10 @@ export default function ExportPage() {
       sheet.eachRow((row) => {
         row.eachCell((cell) => {
           cell.border = {
-            top: { style: "thin", color: { argb: "E2E8F0" } },
-            left: { style: "thin", color: { argb: "E2E8F0" } },
-            bottom: { style: "thin", color: { argb: "E2E8F0" } },
-            right: { style: "thin", color: { argb: "E2E8F0" } },
+            top: { style: "thin", color: { argb: "E5E5E5" } },
+            left: { style: "thin", color: { argb: "E5E5E5" } },
+            bottom: { style: "thin", color: { argb: "E5E5E5" } },
+            right: { style: "thin", color: { argb: "E5E5E5" } },
           };
         });
       });
@@ -203,18 +203,18 @@ export default function ExportPage() {
     <div className="space-y-6 max-w-2xl mx-auto">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold text-white font-[family-name:var(--font-fira-code)]">
+        <h1 className="text-2xl font-bold text-black font-[family-name:var(--font-fira-code)]">
           Export ke Excel
         </h1>
-        <p className="text-[#94A3B8] text-sm mt-1">
+        <p className="text-[#737373] text-sm mt-1">
           Unduh laporan pengeluaran berdasarkan rentang tanggal
         </p>
       </div>
 
       {/* Date Range Card */}
-      <Card className="bg-[#1E293B]/60 border-white/[0.06]">
+      <Card className="bg-white border-black/[0.08]">
         <CardHeader>
-          <CardTitle className="text-lg text-white font-[family-name:var(--font-fira-code)]">
+          <CardTitle className="text-lg text-black font-[family-name:var(--font-fira-code)]">
             Pilih Rentang Tanggal
           </CardTitle>
         </CardHeader>
@@ -222,20 +222,20 @@ export default function ExportPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Date From */}
             <div className="space-y-2">
-              <label className="text-sm text-[#CBD5E1]">Dari tanggal</label>
+              <label className="text-sm text-[#404040]">Dari tanggal</label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
-                    className="w-full justify-start bg-[#0F172A] border-white/[0.08] text-left font-normal"
+                    className="w-full justify-start bg-[#F5F5F5] border-black/[0.08] text-left font-normal"
                   >
-                    <CalendarIcon className="w-4 h-4 mr-2 text-[#64748B]" />
+                    <CalendarIcon className="w-4 h-4 mr-2 text-[#737373]" />
                     {dateFrom ? (
-                      <span className="text-white">
+                      <span className="text-black">
                         {formatDate(dateFrom)}
                       </span>
                     ) : (
-                      <span className="text-[#64748B]">Pilih tanggal</span>
+                      <span className="text-[#737373]">Pilih tanggal</span>
                     )}
                   </Button>
                 </PopoverTrigger>
@@ -251,18 +251,18 @@ export default function ExportPage() {
 
             {/* Date To */}
             <div className="space-y-2">
-              <label className="text-sm text-[#CBD5E1]">Sampai tanggal</label>
+              <label className="text-sm text-[#404040]">Sampai tanggal</label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
-                    className="w-full justify-start bg-[#0F172A] border-white/[0.08] text-left font-normal"
+                    className="w-full justify-start bg-[#F5F5F5] border-black/[0.08] text-left font-normal"
                   >
-                    <CalendarIcon className="w-4 h-4 mr-2 text-[#64748B]" />
+                    <CalendarIcon className="w-4 h-4 mr-2 text-[#737373]" />
                     {dateTo ? (
-                      <span className="text-white">{formatDate(dateTo)}</span>
+                      <span className="text-black">{formatDate(dateTo)}</span>
                     ) : (
-                      <span className="text-[#64748B]">Pilih tanggal</span>
+                      <span className="text-[#737373]">Pilih tanggal</span>
                     )}
                   </Button>
                 </PopoverTrigger>
@@ -278,18 +278,18 @@ export default function ExportPage() {
           </div>
 
           {/* Summary */}
-          <div className="bg-[#0F172A] rounded-lg p-4 border border-white/[0.06]">
+          <div className="bg-[#F5F5F5] rounded-lg p-4 border border-black/[0.08]">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-[#94A3B8]">
+              <span className="text-sm text-[#737373]">
                 Transaksi ditemukan
               </span>
-              <span className="text-white font-semibold font-[family-name:var(--font-fira-code)]">
+              <span className="text-black font-semibold font-[family-name:var(--font-fira-code)]">
                 {isLoading ? "Memuat..." : filteredTransactions.length}
               </span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-[#94A3B8]">Total pengeluaran</span>
-              <span className="text-[#059669] font-semibold font-[family-name:var(--font-fira-code)]">
+              <span className="text-sm text-[#737373]">Total pengeluaran</span>
+              <span className="text-black font-semibold font-[family-name:var(--font-fira-code)]">
                 {isLoading ? "Memuat..." : formatRupiah(totalAmount)}
               </span>
             </div>
@@ -299,7 +299,7 @@ export default function ExportPage() {
           <Button
             onClick={handleExport}
             disabled={isLoading || isExporting || filteredTransactions.length === 0}
-            className="w-full bg-[#059669] hover:bg-[#047857] text-white font-semibold py-5 transition-all duration-200"
+            className="w-full bg-black hover:bg-[#404040] text-white font-semibold py-5 transition-all duration-200"
           >
             {isLoading ? (
               <>
@@ -322,10 +322,10 @@ export default function ExportPage() {
       </Card>
 
       {/* Preview Card */}
-      <Card className="bg-[#1E293B]/60 border-white/[0.06]">
+      <Card className="bg-white border-black/[0.08]">
         <CardHeader className="flex flex-row items-center gap-3">
-          <FileSpreadsheet className="w-5 h-5 text-[#059669]" />
-          <CardTitle className="text-sm text-[#94A3B8] font-normal">
+          <FileSpreadsheet className="w-5 h-5 text-black" />
+          <CardTitle className="text-sm text-[#737373] font-normal">
             File akan berisi header berwarna, zebra striping, format Rupiah, dan
             baris total otomatis.
           </CardTitle>
