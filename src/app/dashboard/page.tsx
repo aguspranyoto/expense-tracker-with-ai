@@ -68,14 +68,14 @@ const categoryIcons: Record<string, React.ElementType> = {
   lainnya: HelpCircle,
 };
 
-// Category badge color mapping (B&W)
+// Category badge color mapping
 const categoryColors: Record<string, string> = {
-  kopi: "bg-black/10 text-black border-black/20",
-  bensin: "bg-black/15 text-black border-black/20",
-  makan: "bg-black/10 text-black border-black/20",
-  transportasi: "bg-black/15 text-black border-black/20",
-  belanja: "bg-black/10 text-black border-black/20",
-  lainnya: "bg-black/5 text-[#404040] border-black/15",
+  kopi: "bg-amber-500/15 text-amber-400 border-amber-500/20",
+  bensin: "bg-red-500/15 text-red-400 border-red-500/20",
+  makan: "bg-orange-500/15 text-orange-400 border-orange-500/20",
+  transportasi: "bg-purple-500/15 text-purple-400 border-purple-500/20",
+  belanja: "bg-pink-500/15 text-pink-400 border-pink-500/20",
+  lainnya: "bg-slate-500/15 text-slate-400 border-slate-500/20",
 };
 
 // Mock data for development

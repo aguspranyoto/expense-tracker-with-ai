@@ -153,7 +153,7 @@ export default function DashboardLayout({
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={() => signOut({ fetchOptions: { onSuccess: () => router.push("/login") } })}
-                className="text-black focus:text-black"
+                className="text-black focus:text-white"
               >
                 <LogOut className="w-4 h-4 mr-2" />
                 Keluar
